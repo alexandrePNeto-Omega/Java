@@ -8,8 +8,6 @@ import com.neto.philippus.models.LineModel;
 
 public class LineView 
 {
-
-	
 	public static void start() 
 	{
 		//	other var's
@@ -42,11 +40,28 @@ public class LineView
 
 		System.out.println();
 
-		for(LineModel s : lc.getLinesVerif(lc.getValReq(), lc.getLines())) {
-			System.out.println(s.getContent());
-			System.out.println("Qtd: " + s.getContentVals());
-			System.out.println();
-		}
+		orderByQtd(lc.getLinesVerif(lc.getValReq(), lc.getLines()));
+		
 		input.close();
 	}	//	start
+	
+	protected static void orderByQtd (ArrayList<LineModel> lines) {
+		LineModel max = new LineModel();
+		max.setContentVals(0);
+		
+		for(LineModel l : lines) {
+			if(l.getContentVals() > 1 
+					&& l.getContentVals() > max.getContentVals())
+				max = l;
+		}	//	for
+		
+		for(LineModel lo : lines) {
+			if(lo.equals(max))
+				System.out.println("A linha abaixo tem a maior equivalencia");
+
+			System.out.println("Linha: " + lo.getContent());
+			System.out.println("Qtd:" + lo.getContentVals());
+			System.out.println();	
+		}	//	for
+	}	//	orderByQtd
 }	//	LineView

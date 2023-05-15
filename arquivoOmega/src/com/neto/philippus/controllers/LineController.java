@@ -21,12 +21,13 @@ public class LineController implements Line
 		int	countOffLine	= 0;
 		
 		for (int i = 0; i < line.length(); i++)
-			countOffLine++;
+			countOffLine++;	
 		
 		return countOffLine;
 	}	//	countCaracters
 	
-	public ArrayList<LineModel> getLinesVerif(ArrayList<String> contents, ArrayList<LineModel> lines) {
+	public ArrayList<LineModel> getLinesVerif(ArrayList<String> contents, 
+			ArrayList<LineModel> lines) {
 		ArrayList<LineModel> retorno =
 				new ArrayList<>();
 		
@@ -35,17 +36,15 @@ public class LineController implements Line
 			for(String s : contents)
 				if(checkContent(l.getContent(), s))
 					count ++;
-			
 			if(count > 0) {
 				l.setContentVals(count);
 				retorno.add(l);
 			}	//	if
-			
 		}	//	for	
 		return retorno;
 	}	//	lineWithContent
 	
-	protected Boolean checkContent(String contentLine, String val){
+	protected Boolean checkContent(String contentLine, String val) {
 		String[] vals = contentLine.toString().split("\\|");
 		for(int i = 0; i < vals.length; i++)
 			if(vals[i].equals(val))
@@ -56,9 +55,8 @@ public class LineController implements Line
 
 	public ArrayList<LineModel> getLines() {
 		return this.lines;
-	}
+	}	//	getLines
 	
-
 	public Boolean setLines(String path) {
 		File file = new File(path);
 		try {
@@ -73,7 +71,6 @@ public class LineController implements Line
 			}	//	while
 			
 			fileS.close();
-			
 			return true;
 		} catch (FileNotFoundException e) {
 			return false;
@@ -83,10 +80,9 @@ public class LineController implements Line
 
 	public ArrayList<String> getValReq() {
 		return valReq;
-	}
+	}	//	getValReq
 	
-
 	public void setValReq(ArrayList<String> valReq) {
 		this.valReq = valReq;
-	}
+	}	//	setValReq
 }
